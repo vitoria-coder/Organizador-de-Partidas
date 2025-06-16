@@ -1,0 +1,9 @@
+<div class="matches-page">
+  <h2>Partidas disponíveis</h2>
+  <div class="card" *ngFor="let partida of partidas">
+    <p><strong>Local:</strong> {{partida.local}} </p>
+    <p><strong>Data:</strong> {{partida.data}} </p>
+    <p><strong>Horário:</strong> {{partida.horario}} </p>
+    <p><strong>Vagas:</strong> {{partida.vagas}}</p>
+  </div>
+</div>

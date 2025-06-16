@@ -1,0 +1,22 @@
+    @use './styles/variables' as *;
+    @use './mixins' as *;
+
+    body{
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: $bg-color;
+        color: $text-color;
+    }
+
+    .glass-box{
+        position: relative;
+        z-index: 2;
+        background: rgba(255,255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+        color: white;
+    }

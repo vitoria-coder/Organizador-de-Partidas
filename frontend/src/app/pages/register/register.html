@@ -1,0 +1,25 @@
+<div class="auth-page">
+    <div class="overlay"></div> 
+
+  <div class="glass-box">
+  <h2>Cadastre-se</h2>
+
+    <form class="auth-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <input type="text" name="name" [(ngModel)]="name" required placeholder="Seu nome"/>
+      <input type="email" name="email" [(ngModel)]="email" required placeholder="Seu e-mail"/>
+      <input type="password" name="password" [(ngModel)]="password" required placeholder="Sua senha"/>
+      <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirme sua senha"/>
+
+      <button type="submit" [disabled]="!registerForm.form.valid">Cadastrar-se</button>
+      </form>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    <p *ngIf="sucessMessage" class="success">{{ sucessMessage }}</p>
+
+    <br>
+    <a routerLink="/login" class="link">Já tem conta? Faça login</a>
+  </div>
+  </div>
+
+
+  

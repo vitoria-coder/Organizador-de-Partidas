@@ -1,0 +1,41 @@
+<div class="login-page">
+  <div class="overlay"></div>
+
+  <div class="login-box">
+    <div class="logo-container">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="80"
+        height="80"
+        viewBox="0 0 100 100"
+        class="svg-logo"
+      >
+        <circle cx="50" cy="50" r="48" fill="#ff6f00" stroke="#fff" stroke-width="4" />
+        <path d="M20,50 Q50,20 80,50 Q50,80 20,50 Z" fill="none" stroke="#fff" stroke-width="3" />
+        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="10">
+          PlayBall
+        </text>
+      </svg>
+    </div>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
+      <label for="email"></label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="E-mail"/>
+      
+      <label for="password"></label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required placeholder="Senha"/>
+
+      <button type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+
+    <br>
+    <a routerLink="#" class="link">Esqueceu a senha?</a>
+  
+  
+  </div>
+
+
+
+  <a href="/register" class="signup-button">Cadastrar-se</a>
+</div>

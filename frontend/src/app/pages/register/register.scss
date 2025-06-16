@@ -1,0 +1,72 @@
+  /*@use '../../pages/login/login' as *;*/
+ @use '../../shared/shared' as*;
+
+  .auth-page{
+    background: url('/fundoNBA.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;  
+    position: relative;
+  }
+
+  .overlay{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .login-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(216, 218, 224, 0.05);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    color: white;
+  }
+  .auth-form{
+  display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input {
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 1rem;
+
+      &::placeholder {
+        color: #eee;
+      }
+
+      &:focus {
+        outline: 2px solid #5c5c5c;
+        background: rgba(255, 255, 255, 0.25);
+      }
+  }
+  }
+  button{
+    padding: 0.75rem;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ffa726, #fb8c00);
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover{
+      background: linear-gradient(90deg, #fb8c00,);
+    }
+    &:disabled{
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
