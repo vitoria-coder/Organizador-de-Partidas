@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const Match = require('../models/match');
 
 //criaçõesdeNovaspartidas//
 exports.createMatch = (req, res) =>{

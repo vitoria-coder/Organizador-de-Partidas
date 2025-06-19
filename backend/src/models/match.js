@@ -18,7 +18,7 @@ exports.findById = (id, callback) =>{
 
 //atualizapartida
 exports.update = (id, title, date, location, callback) =>{
-    const query = 'UDPDATE matches SET title = ?, date = ?, location = ? WHERE id = ?';
+    const query = 'UPDATE matches SET title = ?, date = ?, location = ? WHERE id = ?';
     db.query(query, [title, date, location, id], callback);
 };
 

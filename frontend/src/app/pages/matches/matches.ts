@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatchService } from '../../core/services/match';
+
 
 @Component({
   selector: 'app-matches',
@@ -8,24 +10,17 @@ import { RouterModule } from '@angular/router';
   templateUrl: './matches.html',
   styleUrl: './matches.scss'
 })
-export class Matches {
-  partidas = [{
-   id: 1,
-   local: '',
-   data: '',
-   horario: '',
-   vagas: ''
-  },
-{
-  id: 2,
-  local: '',
-  data: '',
-  horario: '',
-  vagas:''
-}];
+export class Matches implements OnInit{
+  partidas: any[] = [];
 
-participar(partidaId: number){
-  console.log('Confirmado na partida de ID: ${partidaId}');
-}
+  constructor(private matchService: MatchService){}
 
+  ngOnInit() {
+
+    this.matchService.getAll().subscribe({
+      next: (res) => this.partidas = res,
+      error: (err) => console.error('Erro ao buscar partidas', err)
+    });
+    
+  }
 }
