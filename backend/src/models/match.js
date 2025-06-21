@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 //novaspartidas
-exports.create = (title, data, location, callback) =>{
+exports.create = (title, date, location, callback) =>{
     const query = 'INSERT INTO matches (title, date, location) VALUES  (?,?,?)';
     db.query(query, [title, date, location], callback);
 };

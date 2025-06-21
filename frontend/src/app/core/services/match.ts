@@ -10,4 +10,16 @@ export class MatchService {
   getAll(): Observable <any[]>{
     return this.http.get<any[]>(this.apiUrl);
   }
+  create(match: {title: string; date: string; location: string;}): Observable<any>{
+    return this.http.post(this.apiUrl, match);
+  }
+  getById(id: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+  update(id: number, match: {title: string; date: string; location: string;}): Observable<any>{
+    return this.http.put(`${this.apiUrl}/${id}`, match);
+  }
+  delete(id: number): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
