@@ -1,0 +1,14 @@
+<div class="edit-page">
+ <h2> Editar Partida </h2>
+ <form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="title" name="title" required placeholder="Título da partida"/>
+    <input type="date" [(ngModel)]="date"  name="date"/>
+    <input type="text" [(ngModel)]="location" name="location" required placeholder="Local" />
+
+    <button type="submit"> Atualizar </button>
+
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    
+ </form>
+</div>

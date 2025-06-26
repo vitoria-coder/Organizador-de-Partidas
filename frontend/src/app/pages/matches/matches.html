@@ -15,6 +15,7 @@
   <p>Data: {{ partida.date }}</p>
   <p>Local: {{ partida.location }}</p>
 
-  <button (click)="removerPatida(partida.id)"> Remover </button>
+  <button (click)="removerPartida(partida.id)"> Remover </button>
+  <a [routerLink]="['/edit', partida.id]"> Editar </a>
 
 </div>

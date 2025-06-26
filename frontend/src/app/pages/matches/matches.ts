@@ -56,15 +56,14 @@ export class Matches implements OnInit{
   }
 
 
-removerPartida(id:number){
+removerPartida(id: number) {
+  if(!confirm('Tem certeza que deseja remover esta partida?')) return;
+
   this.matchService.delete(id).subscribe({
-    next:() =>{
-      console.log(`Partida com ID ${id} removida com sucesso.`);
-      this.loadMatches();
+    next: () =>{
+      this.partidas = this.partidas.filter(p => p.id !== id); 
+      console.log('Partida removida com sucesso.');
     },
-    error: (err) =>{
-      console.error(`Erro ao remover partida com ID ${id}:`, err);
-    }
   });
 }
 
