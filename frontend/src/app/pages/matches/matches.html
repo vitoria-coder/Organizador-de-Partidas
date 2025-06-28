@@ -6,6 +6,25 @@
   <button type="submit" [disabled]="!matchForm.form.valid">Criar Partida</button>
 </form>
 
+
+<section class="filtros"> 
+  <label for="filtroLocal">FIltrar por Local:</label>
+  <input
+    id="filtroLocal" type="text" [(ngModel)]="filtroLocal"(ngModelChange)="aplicarFiltros()"placeholder="Digite o local da partida" />
+    <label for="filtroData">Filtrar por Data:</label>
+  <input
+  id="filtroData" type="date" [(ngModel)]="filtroData" (ngModelChange)="aplicarFiltros()"/>
+  </section>
+
+  <ul>
+    <li *ngFor="let partida of partidas">
+      <strong>{{ partida.title }}</strong> <br>
+      Data:{{ partida.date}}<br>
+      Local:{{ partida.local}}
+      <button (click)="removerPartida(partida.id)">Remover</button>
+
+    </li>
+  </ul>
 <hr/>
 
 <h2>Partidas Agendadas</h2>

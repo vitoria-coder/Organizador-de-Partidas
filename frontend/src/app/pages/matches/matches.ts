@@ -12,12 +12,18 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './matches.scss'
 })
 export class Matches implements OnInit{
+  todasPartidas: any[] = [];
   partidas: any[] = [];
 
+//CamposPraCriaçãoDasNovasPartidas. 
   title: string='';
   date: string='';
   location: string='';
   errorMessage: string='';
+
+//VariáveisDeFiltros.
+  filtroLocal: string ='';
+  filtroData: string ='';
 
   constructor(private matchService: MatchService){}
 
@@ -25,6 +31,7 @@ export class Matches implements OnInit{
     this.loadMatches();
 }
 
+//FazABuscaPorTodasAsPartidas
   loadMatches(){
     this.matchService.getAll().subscribe({
       next: (res) =>(this.partidas = res),
@@ -34,6 +41,7 @@ export class Matches implements OnInit{
     });
   }
 
+//CriaçãoDePartidas&AtualizaçaõesDaListagem.
   onSubmit(){
     const matchData={
       title: this.title,
@@ -55,10 +63,18 @@ export class Matches implements OnInit{
     });
   }
 
+//AplicaçãoDeFiltrosPorData&Local.
+  aplicarFiltros(){
+    this.partidas = this.todasPartidas.filter(p =>{
+      const matchLocal = this.filtroLocal ? p.location.toLowerCase().includes(this.filtroLocal.toLowerCase()) : true;
+      const matchData = this.filtroData ? p.date === this.filtroData : true;
+
+      return matchLocal && matchData;
+    })
+  }
 
 removerPartida(id: number) {
   if(!confirm('Tem certeza que deseja remover esta partida?')) return;
-
   this.matchService.delete(id).subscribe({
     next: () =>{
       this.partidas = this.partidas.filter(p => p.id !== id); 
@@ -66,6 +82,5 @@ removerPartida(id: number) {
     },
   });
 }
-
 
 }
