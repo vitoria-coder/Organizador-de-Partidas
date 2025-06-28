@@ -1,3 +1,10 @@
+<div class="modal" *ngIf="showModal">
+   <div class="modal-content">
+      <p>{{ successMessage }}</p>
+      <button (click)="fecharModal()">OK</button>
+   </div>
+</div>  
+
 <div class="edit-page">
  <h2> Editar Partida </h2>
  <form (ngSubmit)="onSubmit()">
@@ -11,4 +18,5 @@
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     
  </form>
+ <button (click)="voltar()" class="btn-voltar">Voltar</button>
 </div>

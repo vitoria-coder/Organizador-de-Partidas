@@ -16,6 +16,7 @@ export class EditMatchTs implements OnInit {
   location ='';
   errorMessage ='';
   successMessage ='';
+  showModal: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,12 +48,20 @@ export class EditMatchTs implements OnInit {
     this.matchService.update(this.id, data).subscribe({
       next: ()=>{
         this.successMessage ='Partida atualizada com sucesso!';
-        this.router.navigate(['/matches']);
+        this.showModal = true;
       },
       error: (err) =>{
         this.errorMessage = 'Erro ao atualizar a partida.'
         console.error(err);
       }
     });
+  }
+
+  fecharModal(){
+    this.showModal = false;
+    this.router.navigate(['/matches']);
+  }
+  voltar(){
+    this.router.navigate(['/matches']);
   }
 }

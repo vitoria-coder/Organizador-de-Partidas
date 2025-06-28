@@ -1,0 +1,11 @@
+<div class="detail-page" *ngIf="partida; else error">
+    <h2>{{ partida.title }}</h2>
+    <p><strong>Data:</strong>{{ partida.date }}</p>
+    <p><strong>Local:</strong>{{ partida.location }}</p>
+   
+    <button (click)="voltar()">Voltar</button>
+</div>
+
+<ng-template #error>
+   <p class="error">{{ errorMessage }}</p>
+</ng-template>
