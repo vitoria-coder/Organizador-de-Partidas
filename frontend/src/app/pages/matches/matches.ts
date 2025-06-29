@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatchService } from '../../core/services/match';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationService } from '../../core/services/confirmation';
 
 
 @Component({
@@ -20,12 +21,13 @@ export class Matches implements OnInit{
   date: string='';
   location: string='';
   errorMessage: string='';
+  nomeUsuarios: string='';
 
 //VariáveisDeFiltros.
   filtroLocal: string ='';
   filtroData: string ='';
 
-  constructor(private matchService: MatchService){}
+  constructor(private matchService: MatchService, private ConfirmationService: ConfirmationService){}
 
   ngOnInit() {
     this.loadMatches();
@@ -82,5 +84,25 @@ removerPartida(id: number) {
     },
   });
 }
+
+confirmarPresenca(match_Id:number){
+  if(!this.nomeUsuarios){
+    alert('Por favor, digite seu nome para confirmar sua presença.');
+    return;
+  }
+
+  this.ConfirmationService.confirm(match_Id, this.nomeUsuarios).subscribe({
+    next:() =>{
+      alert('Presença confirmada!');
+      this.nomeUsuarios = '';
+    },
+    error: () =>{
+      alert('Erro ao confirmar presença.');
+    }
+  });
+}
+
+
+
 
 }

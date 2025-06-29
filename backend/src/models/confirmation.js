@@ -1,12 +1,14 @@
 const db = require('../config/db');
 
-//confirmaçãodepresençadousuárioemumpartida
-exports.confirm = (userId, matchId, callback) => {
-    const query = 'INSERT INTO confirmations (user_id, match_id) VALUES (?,?)';
-    db.query(query, [userId, matchId], callback);
+//Confirmações
+exports.create = (match_id, user_name, callback) =>{
+    const query = 'INSERT INTO confirmations (match_id, user_name) VALUES (?,?)';
+    console.log('Executando query:', query, 'com valores:', match_id, user_name);
+    db.query(query,[match_id, user_name], callback);
 };
 
-//listadeconfirmaçõesdepresençaPORpartida
-exports.findByMatchId = (matchId, callback) =>{
-    db.query('SELECT * FROM confirmations WHERE match_id = ?', [matchId], callback);
-};
+//BuscaConfirmaçoẽsPorPartidas
+exports.findByMatchId = (match_id, callback) => {
+    const query = 'SELECT * FROM confirmations WHERE match_id =?';
+    db.query(query,[match_id], callback);
+};  

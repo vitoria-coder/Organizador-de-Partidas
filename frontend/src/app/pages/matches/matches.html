@@ -34,7 +34,9 @@
   <p>Data: {{ partida.date }}</p>
   <p>Local: {{ partida.location }}</p>
 
+  <input [(ngModel)]="nomeUsuarios" name="nomeUsuarios" placeholder="Seu nome" />
+  <button (click)="confirmarPresenca(partida.id)">Confirmar Presença</button>
   <button (click)="removerPartida(partida.id)"> Remover </button>
   <a [routerLink]="['/edit', partida.id]"> Editar </a>
-  <a [routerLink]="['/matches', partida.id]" class="btn-detalhes">Ver Detalhes</a>
+  <a [routerLink]="['/matches', partida.id]" class="btn-de  talhes">Ver Detalhes</a>
 </div>
