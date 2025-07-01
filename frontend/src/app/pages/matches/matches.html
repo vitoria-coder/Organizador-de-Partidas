@@ -1,42 +1,80 @@
-<h2>Nova Partida</h2>
+<h2>Partidas Agendadas</h2>
+
+
 <form (ngSubmit)="onSubmit()" #matchForm="ngForm" class="auth-form">
-  <input type="text" name="title" [(ngModel)]="title" placeholder required="Título da Partida"/>
-  <input type="date" name="date" [(ngModel)]="date" required/>
-  <input type="text" name="location" [(ngModel)]="location" placeholder required="Local da Partida"/>
+  <input 
+  type="text" 
+  name="title" 
+  [(ngModel)]="title" 
+  placeholder required="Título da Partida"/>
+  <input 
+  type="date" 
+  name="date" 
+  [(ngModel)]="date" required/>
+  <input 
+  type="text" 
+  name="location" 
+  [(ngModel)]="location" 
+  placeholder required="Local da Partida"/>
   <button type="submit" [disabled]="!matchForm.form.valid">Criar Partida</button>
 </form>
 
+<hr>
 
 <section class="filtros"> 
-  <label for="filtroLocal">FIltrar por Local:</label>
+  <h3>Filtros</h3>
+  <div>
+  <label for="filtroLocal">Filtrar por Local:</label>
   <input
-    id="filtroLocal" type="text" [(ngModel)]="filtroLocal"(ngModelChange)="aplicarFiltros()"placeholder="Digite o local da partida" />
-    <label for="filtroData">Filtrar por Data:</label>
+    id="filtroLocal" 
+    type="text" 
+    [(ngModel)]="filtroLocal"
+    (ngModelChange)="aplicarFiltros()"
+    placeholder="Digite o local da partida" />
+  </div>
+
+  <div>
+  <label for="filtroData">Filtrar por Data:</label>
   <input
-  id="filtroData" type="date" [(ngModel)]="filtroData" (ngModelChange)="aplicarFiltros()"/>
+  id="filtroData" 
+  type="date" 
+  [(ngModel)]="filtroData" 
+  (ngModelChange)="aplicarFiltros()"/>
+  </div>
   </section>
 
+  <hr>
+
+  <h3>Partidas Filtradas</h3>
   <ul>
     <li *ngFor="let partida of partidas">
-      <strong>{{ partida.title }}</strong> <br>
-      Data:{{ partida.date}}<br>
-      Local:{{ partida.local}}
+      <strong>{{ partida.title }}</strong> <br/>
+      Data:{{ partida.date}} <br/>
+      Local:{{ partida.local}} <br/>
       <button (click)="removerPartida(partida.id)">Remover</button>
 
     </li>
   </ul>
+
 <hr/>
 
 <h2>Partidas Agendadas</h2>
 
 <div class="match-card" *ngFor="let partida of partidas">
   <h3>{{ partida.title }}</h3>
-  <p>Data: {{ partida.date }}</p>
-  <p>Local: {{ partida.location }}</p>
-
-  <input [(ngModel)]="nomeUsuarios" name="nomeUsuarios" placeholder="Seu nome" />
+  <p><strong>Data:</strong> {{ partida.date }}</p>
+  <p><strong>Local:</strong> {{ partida.location }}</p>
+<div>
+  <input 
+  [(ngModel)]="nomeUsuarios[partida.id]" 
+  name="nomeUsuarios" 
+  placeholder="Seu nome"/>
   <button (click)="confirmarPresenca(partida.id)">Confirmar Presença</button>
   <button (click)="removerPartida(partida.id)"> Remover </button>
+</div>
+
+<div>
   <a [routerLink]="['/edit', partida.id]"> Editar </a>
-  <a [routerLink]="['/matches', partida.id]" class="btn-de  talhes">Ver Detalhes</a>
+  <a [routerLink]="['/matches', partida.id]" class="btn-detalhes">Ver Detalhes</a>
+</div>
 </div>

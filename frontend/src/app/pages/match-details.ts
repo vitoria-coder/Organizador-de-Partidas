@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { MatchService } from '../core/services/match';
+import { ConfirmationService } from '../core/services/confirmation';
 @Component({
   selector: 'app-match-details',
   imports: [CommonModule, RouterModule],
@@ -11,11 +12,13 @@ import { MatchService } from '../core/services/match';
 export class MatchDetails implements OnInit{
   partida: any= null ;
   errorMessage: string ='';
+  confirmacoes: any[] = [];
 
   constructor(
     private route:ActivatedRoute,
     private matchService: MatchService,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService,
   ){}
 
   ngOnInit(): void {
@@ -27,6 +30,14 @@ export class MatchDetails implements OnInit{
           console.error(err);
           this.errorMessage = 'Erro ao carregar detalhes da partida.';
         }
+      });
+
+      this.confirmationService.getConfirmations(+id).subscribe({
+        next: (res) => (this.confirmacoes = res),
+        error: (err) =>{
+          console.error(err);
+          this.errorMessage = 'Erro ao carregar confirmações.' 
+        },
       });
     }
   }

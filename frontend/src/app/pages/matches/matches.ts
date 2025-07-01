@@ -21,7 +21,7 @@ export class Matches implements OnInit{
   date: string='';
   location: string='';
   errorMessage: string='';
-  nomeUsuarios: string='';
+  nomeUsuarios: { [key: number]: string } ={};
 
 //VariáveisDeFiltros.
   filtroLocal: string ='';
@@ -86,12 +86,13 @@ removerPartida(id: number) {
 }
 
 confirmarPresenca(match_Id:number){
+  const nome = this.nomeUsuarios[match_Id];
   if(!this.nomeUsuarios){
     alert('Por favor, digite seu nome para confirmar sua presença.');
     return;
   }
 
-  this.ConfirmationService.confirm(match_Id, this.nomeUsuarios).subscribe({
+  this.ConfirmationService.confirm(match_Id, this.nomeUsuarios[match_Id]).subscribe({
     next:() =>{
       alert('Presença confirmada!');
       this.nomeUsuarios = '';

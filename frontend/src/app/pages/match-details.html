@@ -7,5 +7,17 @@
 </div>
 
 <ng-template #error>
-   <p class="error">{{ errorMessage }}</p>
+   <p class="error">{{ errorMessage }}</p>   
+</ng-template>
+
+
+<h3> Confirmados:</h3>
+<ul *ngIf="confirmacoes.length > 0; else semConfirmacoes">
+    <li *ngFor="let c of confirmacoes">
+        {{ c.user_name }}
+    </li>
+</ul>
+
+<ng-template #semConfirmacoes>
+    <p>Nenhum jogador confirmou presença ainda.</p>
 </ng-template>
