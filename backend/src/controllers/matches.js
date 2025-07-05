@@ -48,7 +48,10 @@ exports.deleteMatch = (req,res) =>{
     const { id } = req.params;
 
     Match.delete(id, (err, results) =>{
-        if(err) return res.status(500).json({error: err});
+        if(err) {
+            console.error('Erro ao deletar partida:', err);
+            return res.status(500).json({ error: 'Erro ao deletar partida.'});
+        }
         res.status(200).json({message: 'Partida removida com sucesso!!'});
     });
 };

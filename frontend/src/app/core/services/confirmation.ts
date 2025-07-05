@@ -17,4 +17,8 @@ export class ConfirmationService {
   getConfirmations(match_id: number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${match_id}`);
   }
+
+  delete(id: number): Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }

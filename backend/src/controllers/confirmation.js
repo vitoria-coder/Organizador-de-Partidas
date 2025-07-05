@@ -29,3 +29,27 @@ exports.getConfirmationsByMatchId = (req,res) =>{
         res.status(201).json(results);
     });
 };
+
+
+exports.deleteConfirmation = (req,res) =>{
+    const confirmationId = req.params.id;
+    const userId = req.user.user_Id;
+
+    Confirmation.findById(confirmationId, (err, result) =>{
+        if(err) return res.status(500).json({ error:err});
+
+        const confirmation = result[0];
+
+        if(!confirmation){
+            return res.status(404).json({ message: 'Confirmação não encontrada.'});
+        }
+
+        if(confirmation.user_Id !== userId){
+            return res.status(403).json({ message: 'Você não tem permissão para excluir essa confirmação.'})
+        }
+        Confirmation.delete(confirmationId, (err) =>{
+            if(err) return res.status(500).json({ error:err });
+            res.status(200).json({ message: 'Confirmação excluída com sucesso.'})
+        });
+    });
+};

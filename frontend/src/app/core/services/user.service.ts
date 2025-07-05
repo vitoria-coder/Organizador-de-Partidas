@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,14 @@ import { Observable } from 'rxjs';
 export class UserService {
   private baseUrl = 'http://localhost:3000/users';
   constructor(private http: HttpClient){}
-
-  login(data: {email: string; password: string}): Observable<any>{
-    return this.http.post(`${this.baseUrl}/login`, data);
-  }
+  
+  login(credentials: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
+      tap((res: any) =>{
+        localStorage.setItem('token', res.token);
+      })
+    );
+  };
   register(data:{name: string; email: string; password: string}): Observable<any>{
     return this.http.post(`${this.baseUrl}/register`, data);
   }

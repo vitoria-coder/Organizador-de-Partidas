@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EditMatchTs } from './edit-match.ts';
+import { EditMatchTs } from './edit-match';
 
 describe('EditMatchTs', () => {
   let component: EditMatchTs;

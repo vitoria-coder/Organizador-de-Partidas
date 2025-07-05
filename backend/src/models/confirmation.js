@@ -12,3 +12,9 @@ exports.findByMatchId = (match_id, callback) => {
     const query = 'SELECT * FROM confirmations WHERE match_id =?';
     db.query(query,[match_id], callback);
 };  
+
+//RemoveUmaConfirmaçãoPorID
+exports.delete = (id, callback) => {
+    const query = 'DELETE FROM confirmations WHERE id = ?';
+    db.query(query,[id], callback);
+};

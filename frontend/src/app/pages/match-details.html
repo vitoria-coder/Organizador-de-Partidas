@@ -21,3 +21,8 @@
 <ng-template #semConfirmacoes>
     <p>Nenhum jogador confirmou presença ainda.</p>
 </ng-template>
+
+<li *ngFor="let confirmacao of confirmacoes">
+    {{ confirmacao.user_name }}
+    <button *ngIf="confirmacao.user_id === usuarioLogadoId" (click)="removerConfirmacao(confirmacao.id)">Remover</button>
+</li>

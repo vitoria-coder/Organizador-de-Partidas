@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 exports.create = (name, email, hashedPassword, callback) =>{
-    const query = 'INSERT INT users (name, email, password) VALUES (?,?,?)';
+    const query = 'INSERT INTO users (username, email, password) VALUES (?,?,?)';
     db.query(query, [name, email, hashedPassword], callback);
 };
 
